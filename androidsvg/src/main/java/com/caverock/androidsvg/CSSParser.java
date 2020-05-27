@@ -1169,7 +1169,7 @@ class CSSParser
          if (!scan.empty() && !scan.consume(';'))
             throw new CSSParseException("Invalid @media rule: expected '}' at end of rule set");
 
-         if (externalFileResolver != null && mediaMatches(mediaList, deviceMediaType)) {
+         if (externalFileResolver != null && (mediaList.isEmpty() || mediaMatches(mediaList, deviceMediaType))) {
             String  css = externalFileResolver.resolveCSSStyleSheet(file);
             if (css == null)
                return;
